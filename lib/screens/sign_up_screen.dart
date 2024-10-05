@@ -22,68 +22,71 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   String? email;
   String? password;
-
+  GlobalKey<FormState> formKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          const SizedBox(height: 80),
-          const TalkyLogo(
-            textColor: Color(0xFF243443),
-            dotColor: Color(0xFF377DFF),
-            textSize: 45,
-            dotSize: 15,
-            sizedBoxDot: 40,
-          ),
-          const SizedBox(height: 38),
-          const Center(
-            child: CustomTitleWidget(
-              titleText: 'Sign up',
-              titleSize: 16,
-              titleColor: Color(0xFF243443),
-              titleWeight: 'semi bold',
+      body: Form(
+        key: formKey,
+        child: ListView(
+          children: <Widget>[
+            const SizedBox(height: 80),
+            const TalkyLogo(
+              textColor: Color(0xFF243443),
+              dotColor: Color(0xFF377DFF),
+              textSize: 45,
+              dotSize: 15,
+              sizedBoxDot: 40,
             ),
-          ),
-          const SizedBox(height: 38),
-          InputFieldWidget(
-            onChanged: (data) {
-              email = data;
-            },
-            hintText: 'Enter your gmail address',
-          ),
-          const SizedBox(height: 18),
-          InputFieldWidget(
-            onChanged: (data) {
-              password = data;
-            },
-            hintText: 'Enter your password',
-          ),
-          const SizedBox(height: 18),
-          const SizedBox(height: 160),
-          CustomButton(
-            text: 'Sign up',
-            onTap: () async {
-              if (email != null && password != null) {
-                try {
-                  var credential = await signUpMethod(email!,password!);
-                } on FirebaseAuthException catch (e) {
+            const SizedBox(height: 38),
+            const Center(
+              child: CustomTitleWidget(
+                titleText: 'Sign up',
+                titleSize: 16,
+                titleColor: Color(0xFF243443),
+                titleWeight: 'semi bold',
+              ),
+            ),
+            const SizedBox(height: 38),
+            InputFieldWidget(
+              onChanged: (data) {
+                email = data;
+              },
+              hintText: 'Enter your gmail address',
+            ),
+            const SizedBox(height: 18),
+            InputFieldWidget(
+              onChanged: (data) {
+                password = data;
+              },
+              hintText: 'Enter your password',
+            ),
+            const SizedBox(height: 18),
+            const SizedBox(height: 160),
+            CustomButton(
+              text: 'Sign up',
+              onTap: () async {
+                if (formKey.currentState!.validate()) {
+                  try {
+                    var credential = await signUpMethod(email!, password!);
+                  } on FirebaseAuthException catch (e) {
+                    showSnackbar(
+                        e.message ?? 'There was an error signing up.', context);
+                  } catch (e) {
+                    showSnackbar('There was an error signing up.', context);
+                  }
+                } else {
                   showSnackbar(
-                      e.message ?? 'There was an error signing up.', context);
-                } catch (e) {
-                  showSnackbar('There was an error signing up.', context);
+                      'Please enter your email and password.', context);
                 }
-              } else {
-                showSnackbar('Please enter your email and password.', context);
-              }
-            },
-          ),
-          const SizedBox(height: 32),
-          const SignInWidget(),
-          const SizedBox(width: 100),
-        ],
+              },
+            ),
+            const SizedBox(height: 32),
+            const SignInWidget(),
+            const SizedBox(width: 100),
+          ],
+        ),
       ),
     );
   }
