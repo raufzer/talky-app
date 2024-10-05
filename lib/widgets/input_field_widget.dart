@@ -12,7 +12,12 @@ class InputFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: TextField(
+      child: TextFormField(
+        validator: (data){
+          if (data!.isEmpty) return 'Email address is required';
+          if (!data.contains('@')) return 'Invalid email address';
+          return null;
+        },
         onChanged: onChanged,
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
