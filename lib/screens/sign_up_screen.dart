@@ -1,8 +1,9 @@
 // utils.dart
-// ignore_for_file: use_build_context_synchronously, avoid_print
+// ignore_for_file: use_build_context_synchronously, avoid_print, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:talky_app/services/sign_up_method.dart';
 import 'package:talky_app/utils/show_snack_bar.dart';
 import 'package:talky_app/widgets/custom_button.dart';
 import 'package:talky_app/widgets/custom_title_widget.dart';
@@ -67,12 +68,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             onTap: () async {
               if (email != null && password != null) {
                 try {
-                  final credential = await FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
-                    email: email!,
-                    password: password!,
-                  );
-                  print('User signed up: ${credential.user!.uid}');
+                  var credential = await signUpMethod(email!,password!);
                 } on FirebaseAuthException catch (e) {
                   showSnackbar(
                       e.message ?? 'There was an error signing up.', context);
