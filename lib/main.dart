@@ -7,13 +7,12 @@ import 'package:talky_app/firebase_options.dart';
 import 'package:talky_app/screens/splash_screen.dart';
 import 'package:talky_app/utils/screens_map.dart';
 
-
 Future<void> main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   await Firebase.initializeApp(
-  options: DefaultFirebaseOptions.currentPlatform,
-);
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const TalkyApp());
 }
 
