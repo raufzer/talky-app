@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:talky_app/utils/constants.dart';
 
 class InputFieldWidget extends StatelessWidget {
-  const InputFieldWidget(
-      {super.key, required this.controller, required this.hintText});
-  final TextEditingController controller;
+   InputFieldWidget(
+      {super.key, required this.hintText, this.onChanged});
+  Function(String)? onChanged;
   final String hintText;
 
   @override
@@ -13,7 +13,7 @@ class InputFieldWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: TextField(
-        controller: controller,
+        onChanged: onChanged,
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
           hintText: hintText,

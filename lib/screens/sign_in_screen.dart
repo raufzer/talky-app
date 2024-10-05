@@ -7,15 +7,15 @@ import 'package:talky_app/widgets/sign_up_widget.dart';
 import 'package:talky_app/widgets/talky_logo_widget.dart';
 
 class SignInScreen extends StatefulWidget {
-   const SignInScreen({super.key});
+  const SignInScreen({super.key});
   static String id = '/SignInScreen';
   @override
   State<SignInScreen> createState() => _SignInScreenState();
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  String? email;
+  String? password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,13 +47,17 @@ class _SignInScreenState extends State<SignInScreen> {
               height: 38,
             ),
             InputFieldWidget(
-                controller: emailController,
+                onChanged: (data){
+                  email = data;
+                } ,
                 hintText: 'Enter your gmail address'),
             const SizedBox(
               height: 18,
             ),
             InputFieldWidget(
-                controller: passwordController,
+                onChanged: (data){
+                  password = data; 
+                },
                 hintText: 'Enter your password'),
             ForgotPasswordButton(
               onPressed: () {},
@@ -61,7 +65,10 @@ class _SignInScreenState extends State<SignInScreen> {
             const SizedBox(
               height: 160,
             ),
-            const CustomButton(text: 'Sign in'),
+            CustomButton(
+                text: 'Sign in',
+                onTap: () {
+                }),
             const SizedBox(
               height: 32,
             ),
