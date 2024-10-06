@@ -1,18 +1,15 @@
-// utils.dart
-// ignore_for_file: use_build_context_synchronously, avoid_print, unused_local_variable
-
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:talky_app/services/sign_up_method.dart';
 import 'package:talky_app/utils/show_snack_bar.dart';
+import 'package:talky_app/utils/validators.dart';
 import 'package:talky_app/widgets/custom_button.dart';
 import 'package:talky_app/widgets/custom_title_widget.dart';
 import 'package:talky_app/widgets/input_field_widget.dart';
 import 'package:talky_app/widgets/sign_in_widget.dart';
 import 'package:talky_app/widgets/talky_logo_widget.dart';
 
-import '../utils/validators.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
