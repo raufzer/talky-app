@@ -9,22 +9,22 @@ class SignUpWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          const CustomText(
-              customText: "Don't have an account?",
-              customColor: Color(0xFF243443),
-              customFontWeight: 'medium'),
-          GestureDetector(
-            onTap: () {},
-            child: const CustomText(
-                customText: 'Sign up here',
-                customColor: blueColor,
-                customFontWeight: 'bold'),
-          )
-        ],
-      ),
+    return Column(
+      children: [
+        const CustomText(
+            customText: "Don't have an account?",
+            customColor: Color(0xFF243443),
+            customFontWeight: 'medium'),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/SignUpScreen');
+          },
+          child: const CustomText(
+              customText: 'Sign up here',
+              customColor: blueColor,
+              customFontWeight: 'bold'),
+        )
+      ],
     );
   }
 }

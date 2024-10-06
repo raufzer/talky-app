@@ -3,9 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:talky_app/services/sign_up_method.dart';
+import 'package:talky_app/services/auth_methods.dart';
 import 'package:talky_app/utils/show_snack_bar.dart';
 import 'package:talky_app/utils/validators.dart';
+import 'package:talky_app/widgets/app_bar_title.dart';
+import 'package:talky_app/widgets/app_bar_widget.dart';
 import 'package:talky_app/widgets/custom_button.dart';
 import 'package:talky_app/widgets/custom_title_widget.dart';
 import 'package:talky_app/widgets/input_field_widget.dart';
@@ -36,7 +38,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
           key: formKey,
           child: ListView(
             children: <Widget>[
-              const SizedBox(height: 80),
+              const TalkyAppBar(
+                appBarTitle: AppBarTitle(customText: ''),
+              ),
+              const SizedBox(
+                height: 26,
+              ),
               const TalkyLogo(
                 textColor: Color(0xFF243443),
                 dotColor: Color(0xFF377DFF),
@@ -47,7 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const SizedBox(height: 38),
               const Center(
                 child: CustomTitleWidget(
-                  titleText: 'Sign up',
+                  titleText: 'Create Account',
                   titleSize: 16,
                   titleColor: Color(0xFF243443),
                   titleWeight: 'semi bold',
@@ -81,7 +88,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     setState(() {});
                     try {
                       await signUpMethod(email!, password!);
-                      // Handle successful sign-up here
+                      Navigator.pushReplacementNamed(context, '/ProfileScreen');
                     } on FirebaseAuthException catch (e) {
                       showSnackbar(
                           e.message ?? 'There was an error signing up.',

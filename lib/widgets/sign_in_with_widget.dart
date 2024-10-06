@@ -8,28 +8,26 @@ class SignInWithWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          SignInWithButton(
-            iconAsset: 'assets/icons/google_logo.svg',
-            text: 'Sign in with Google',
-            onPressed: () {},
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          SignInWithButton(
-            iconAsset: 'assets/icons/facebook_logo.svg',
-            text: 'Sign in with Facebook',
-            onPressed: () {},
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          SignInWithButton(iconAsset: 'assets/icons/apple_logo.svg', text: 'Sign in with Apple', onPressed: (){})
-        ],
-      ),
+    return Column(
+      children: [
+        SignInWithButton(
+          iconAsset: 'assets/icons/google_logo.svg',
+          text: 'Sign in with Google',
+          onPressed: () {},
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        SignInWithButton(
+          iconAsset: 'assets/icons/facebook_logo.svg',
+          text: 'Sign in with Facebook',
+          onPressed: () {},
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        SignInWithButton(iconAsset: 'assets/icons/apple_logo.svg', text: 'Sign in with Apple', onPressed: (){})
+      ],
     );
   }
 }

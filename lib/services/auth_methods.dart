@@ -7,3 +7,11 @@ Future<dynamic> signUpMethod(var email, var password) async {
   );
   return credential;
 }
+
+Future<UserCredential> signInMethod(String email, String password) async {
+  final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+    email: email,
+    password: password,
+  );
+  return credential;
+}

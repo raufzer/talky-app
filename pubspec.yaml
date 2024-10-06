@@ -79,6 +79,7 @@ flutter:
     - assets/icons/google_logo.svg
     - assets/icons/facebook_logo.svg
     - assets/icons/apple_logo.svg
+    - assets/icons/back_icon.svg
   # Images 
 
 
