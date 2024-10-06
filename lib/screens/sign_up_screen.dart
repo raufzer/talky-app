@@ -60,6 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onChanged: (data) {
                   email = data;
                 },
+                obscureText: false,
               ),
               const SizedBox(height: 18),
               InputFieldWidget(
@@ -68,6 +69,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onChanged: (data) {
                   password = data;
                 },
+                obscureText: true,
               ),
               const SizedBox(height: 18),
               const SizedBox(height: 160),
@@ -76,8 +78,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onTap: () async {
                   if (formKey.currentState!.validate()) {
                     isLoading = true;
+                    setState(() {});
                     try {
-                      var credential = await signUpMethod(email!, password!);
+                      await signUpMethod(email!, password!);
                       // Handle successful sign-up here
                     } on FirebaseAuthException catch (e) {
                       showSnackbar(
@@ -87,6 +90,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       showSnackbar('There was an error signing up.', context);
                     } finally {
                       isLoading = false;
+                      setState(() {});
                     }
                   }
                 },

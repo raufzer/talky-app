@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:talky_app/cubits/splash_screen_cubit/splash_screen_cubit.dart';
 import 'package:talky_app/cubits/splash_screen_cubit/splash_screen_states.dart';
 import 'package:talky_app/screens/sign_up_screen.dart';
-import 'package:talky_app/utils/constants.dart';
+import 'package:talky_app/utils/colors.dart';
 import 'package:talky_app/widgets/talky_logo_widget.dart';
 
 class SplashScreen extends StatefulWidget {

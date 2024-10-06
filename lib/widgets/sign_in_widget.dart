@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:talky_app/utils/constants.dart';
+import 'package:talky_app/utils/colors.dart';
 import 'package:talky_app/widgets/custom_text.dart';
 
 class SignInWidget extends StatelessWidget {

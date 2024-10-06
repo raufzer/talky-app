@@ -47,28 +47,29 @@ class _SignInScreenState extends State<SignInScreen> {
               height: 38,
             ),
             InputFieldWidget(
-                onChanged: (data){
-                  email = data;
-                } ,
-                hintText: 'Enter your gmail address'),
+              onChanged: (data) {
+                email = data;
+              },
+              hintText: 'Enter your gmail address',
+              obscureText: false,
+            ),
             const SizedBox(
               height: 18,
             ),
             InputFieldWidget(
-                onChanged: (data){
-                  password = data; 
-                },
-                hintText: 'Enter your password'),
+              onChanged: (data) {
+                password = data;
+              },
+              hintText: 'Enter your password',
+              obscureText: true,
+            ),
             ForgotPasswordButton(
               onPressed: () {},
             ),
             const SizedBox(
               height: 160,
             ),
-            CustomButton(
-                text: 'Sign in',
-                onTap: () {
-                }),
+            CustomButton(text: 'Sign in', onTap: () {}),
             const SizedBox(
               height: 32,
             ),
