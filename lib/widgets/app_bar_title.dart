@@ -14,7 +14,7 @@ class AppBarTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       customText,
-      style: fontStyler(const Color(0xFF243443), 'bold', 16),
+      style: fontStyler(const Color(0xFF243443), 'bold', 14),
     );
   }
 }

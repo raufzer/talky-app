@@ -38,6 +38,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
           key: formKey,
           child: ListView(
             children: <Widget>[
+              const SizedBox(
+                height: 26,
+              ),
               const TalkyAppBar(
                 appBarTitle: AppBarTitle(customText: ''),
               ),
