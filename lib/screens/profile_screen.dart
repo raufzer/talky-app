@@ -5,7 +5,7 @@ import 'package:talky_app/widgets/app_bar_widget.dart';
 import 'package:talky_app/widgets/availability_indicator_widget.dart';
 import 'package:talky_app/widgets/custom_button.dart';
 import 'package:talky_app/widgets/input_field_widget.dart';
-import 'package:talky_app/widgets/profile_avatar_widget.dart';
+import 'package:talky_app/widgets/profile_avatar_picker_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -34,7 +34,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           const SizedBox(
             height: 50,
           ),
-          const ProfileAvatar(),
+          const ProfileAvatarPicker(),
           const SizedBox(height: 50),
           InputFieldWidget(
             hintText: 'Enter your profile name',
@@ -54,7 +54,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           const SizedBox(height: 18),
           AvailabilityIndicator(),
           const SizedBox(height: 100),
-          CustomButton(text: 'Complete', onTap: () {}),
+          CustomButton(text: 'Complete', onTap: () {
+            Navigator.pushReplacementNamed(context, '/HomeScreen');
+          }),
           const SizedBox(height: 90),
         ],
       ),
