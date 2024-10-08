@@ -28,7 +28,7 @@ class InputFieldWidget extends StatelessWidget {
           hintText: hintText,
           hintStyle: TextStyle(
             fontSize: 12.r,
-            color: const Color(0xFFAAB0B7), // Change hint text color
+            color: const Color(0xFFAAB0B7), 
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
@@ -40,13 +40,13 @@ class InputFieldWidget extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: const BorderSide(
-                color: Colors.blue), // Change focused border color
+                color: Colors.blue), 
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: const BorderSide(
                 color:
-                    Color(0xFFAAB0B7)), // Change unfocused border color
+                    Color(0xFFAAB0B7)), 
           ),
           contentPadding:
               const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
