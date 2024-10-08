@@ -30,7 +30,7 @@ class _ProfileAvatarState extends State<ProfileAvatar> {
       onTap: _pickImage,
       child: Center(
         child: Stack(
-          
+
           children: [
             CircleAvatar(
               radius: 90.0,
@@ -38,7 +38,7 @@ class _ProfileAvatarState extends State<ProfileAvatar> {
               backgroundImage:
                   _image != null ? FileImage(File(_image!.path)) : null,
               child: _image == null
-                  ? const Icon(Icons.person, size: 180, color: Colors.white)
+                  ? const Icon(Icons.person, size: 150, color: Colors.white)
                   : null,
             ),
             Positioned(
