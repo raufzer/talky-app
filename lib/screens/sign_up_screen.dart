@@ -84,7 +84,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const SizedBox(height: 18),
               const SizedBox(height: 160),
               CustomButton(
-                text: 'Sign up',
+                text: 'Continue',
                 onTap: () async {
                   if (formKey.currentState!.validate()) {
                     isLoading = true;
