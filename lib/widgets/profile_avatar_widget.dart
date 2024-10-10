@@ -4,27 +4,24 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ProfileAvatar extends StatefulWidget {
+class ProfileAvatar extends StatelessWidget {
   const ProfileAvatar({
     super.key,
     this.profileAvatarRadius,
+    this.profileAvatarIconSize, this.profilePictureUrl,
   });
   final double? profileAvatarRadius;
-  @override
-  State<ProfileAvatar> createState() => _ProfileAvatarState();
-}
-
-class _ProfileAvatarState extends State<ProfileAvatar> {
-  XFile? _image;
+  final double? profileAvatarIconSize;
+  final String? profilePictureUrl;
 
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: widget.profileAvatarRadius,
+      radius: profileAvatarRadius,
       backgroundColor: const Color(0xFFC7DAFF),
-      backgroundImage: _image != null ? FileImage(File(_image!.path)) : null,
-      child: _image == null
-          ? const Icon(Icons.person, size: 30, color: Colors.white)
+      backgroundImage: Image.network(profilePictureUrl ?? '').image,
+      child: profilePictureUrl == null
+          ? Icon(Icons.person, size: profileAvatarIconSize, color: Colors.white)
           : null,
     );
   }

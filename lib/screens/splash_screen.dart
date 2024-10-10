@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:talky_app/cubits/splash_screen_cubit/splash_screen_cubit.dart';
 import 'package:talky_app/cubits/splash_screen_cubit/splash_screen_states.dart';
+import 'package:talky_app/screens/chat_screen.dart';
+import 'package:talky_app/screens/home_screen.dart';
 import 'package:talky_app/screens/profile_screen.dart';
 import 'package:talky_app/utils/colors.dart';
 import 'package:talky_app/widgets/talky_logo_widget.dart';
@@ -28,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
         listener: (context, state) {
           if (state is SplashSuccess) {
             Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const ProfileScreen()));
+                MaterialPageRoute(builder: (context) => const ChatScreen()));
           }
         },
         child: const Column(
