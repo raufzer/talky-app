@@ -12,6 +12,6 @@ var screensMap = {
   SignInScreen.id: (context) => const SignInScreen(),
   SignUpScreen.id: (context) => const SignUpScreen(),
   HomeScreen.id: (context) => const HomeScreen(),
-  ChatScreen.id: (context) => const ChatScreen(),
+  ChatScreen.id: (context) =>  ChatScreen(),
   ProfileScreen.id: (context) => const ProfileScreen(),
 };
