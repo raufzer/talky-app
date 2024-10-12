@@ -14,9 +14,8 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  String messageDocumentID = dotenv.env['MESSAGES_DOCUMENT_ID']!;
   final List<types.Message> _messages = [];
-  late final _user = types.User(id: messageDocumentID);
+  final _user = types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
   CollectionReference messagesCollectionReference =
       FirebaseFirestore.instance.collection('messages');
 
