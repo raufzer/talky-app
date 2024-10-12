@@ -98,7 +98,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       await signInMethod(email!, password!);
                       Navigator.pushReplacementNamed(context, '/HomeScreen');
                     } on FirebaseAuthException catch (e) {
-                      String errorMessage = handleFirebaseAuthException(e);
+                      String errorMessage = handleSignInFirebaseAuthException(e);
                       showSnackbar(errorMessage, context);
                     } catch (e) {
                       showSnackbar(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:talky_app/services/auth_methods.dart';
+import 'package:talky_app/utils/auth_error_handling_messages.dart';
 import 'package:talky_app/utils/show_snack_bar.dart';
 import 'package:talky_app/utils/validators.dart';
 import 'package:talky_app/widgets/app_bar_title.dart';
@@ -93,9 +94,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       await signUpMethod(email!, password!);
                       Navigator.pushReplacementNamed(context, '/ProfileScreen');
                     } on FirebaseAuthException catch (e) {
-                      showSnackbar(
-                          e.message ?? 'There was an error signing up.',
-                          context);
+                      String errorMessage = handleSignUpFirebaseAuthException(e);
+                      showSnackbar(errorMessage, context);
                     } catch (e) {
                       showSnackbar('There was an error signing up.', context);
                     } finally {
