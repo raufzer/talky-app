@@ -34,18 +34,20 @@ class ContinueWithButton extends StatelessWidget {
           ],
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(width: 45.r),
-            Text(
-              text,
-              style: GoogleFonts.inter(
-                fontSize: 12.r,
-                fontWeight: FontWeight.w500,
-                color: blackColor,
+            SizedBox(width: 30.r),
+            Center(
+              child: Text(
+                text,
+                style: GoogleFonts.inter(
+                  fontSize: 12.r,
+                  fontWeight: FontWeight.w500,
+                  color: blackColor,
+                ),
               ),
             ),
-            SizedBox(width: 45.r),
+            SizedBox(width: 30.r),
           ],
         ),
       ),

@@ -39,7 +39,9 @@ class _SignInSocialScreenState extends State<SignInSocialScreen> {
             const OrDivider(),
             const SizedBox(height: 38),
             ContinueWithButton(
-                text: 'Continue with phone number', onPressed: () {}),
+                text: 'Continue with e-mail', onPressed: () {
+            Navigator.pushNamed(context, '/SignInScreen');
+                }),
             const SizedBox(
               height: 50,
             ),

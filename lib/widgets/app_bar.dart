@@ -13,7 +13,11 @@ class AppBarView extends StatelessWidget {
         Stack(
           alignment: Alignment.bottomRight,
           children: [
-            ProfileAvatar(profileAvatarRadius: 24),
+            GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/ChatScreen');
+                },
+                child: ProfileAvatar(profileAvatarRadius: 24)),
             Container(
               width: 12,
               height: 12,
@@ -26,7 +30,12 @@ class AppBarView extends StatelessWidget {
           ],
         ),
         Spacer(),
-        GestureDetector(child: Icon(Icons.search, size: 24,color: Color(0xFF243443),)),
+        GestureDetector(
+            child: Icon(
+          Icons.search,
+          size: 24,
+          color: Color(0xFF243443),
+        )),
         const SizedBox(width: 20),
       ],
     );
