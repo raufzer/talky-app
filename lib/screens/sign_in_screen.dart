@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:talky_app/services/auth_methods.dart';
+import 'package:talky_app/utils/auth_error_handling_messages.dart';
 import 'package:talky_app/utils/show_snack_bar.dart';
 import 'package:talky_app/utils/validators.dart';
 import 'package:talky_app/widgets/app_bar_title.dart';
@@ -40,7 +41,9 @@ class _SignInScreenState extends State<SignInScreen> {
           key: formKey,
           child: ListView(
             children: <Widget>[
-              const SizedBox(height: 26,),
+              const SizedBox(
+                height: 26,
+              ),
               const TalkyAppBar(
                 appBarTitle: AppBarTitle(customText: ''),
               ),
@@ -95,11 +98,12 @@ class _SignInScreenState extends State<SignInScreen> {
                       await signInMethod(email!, password!);
                       Navigator.pushReplacementNamed(context, '/HomeScreen');
                     } on FirebaseAuthException catch (e) {
-                      showSnackbar(
-                          e.message ?? 'There was an error signing in.',
-                          context);
+                      String errorMessage = handleFirebaseAuthException(e);
+                      showSnackbar(errorMessage, context);
                     } catch (e) {
-                      showSnackbar('There was an error signing in.', context);
+                      showSnackbar(
+                          'There was an error signing in. Please try again later.',
+                          context);
                     } finally {
                       isLoading = false;
                       setState(() {});
