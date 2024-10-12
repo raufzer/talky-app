@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:talky_app/utils/chat_utils.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -53,39 +54,9 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       body: Chat(
         messages: _messages.reversed.toList(),
-        onSendPressed: _handleSendPressed,
+        onSendPressed: (message) => handleSendPressed(message, _user, _messages, setState),  
         user: _user,
       ),
     );
-  }
-
-  void _handleSendPressed(types.PartialText message) async {
-    final textMessage = types.TextMessage(
-      author: _user,
-      createdAt: DateTime.now().millisecondsSinceEpoch,
-      id: 'id',
-      text: message.text,
-    );
-    _addMessage(textMessage);
-    await _sendMessageToFirestore(message.text);
-  }
-
-  void _addMessage(types.Message message) {
-    setState(() {
-      _messages.insert(0, message);
-    });
-  }
-
-  Future<void> _sendMessageToFirestore(String text) async {
-    try {
-      await FirebaseFirestore.instance.collection('messages').add({
-        'message': text,
-        'createdAt': DateTime.now().millisecondsSinceEpoch,
-        'userId': _user.id,
-      });
-    } catch (error) {
-      // Handle error, e.g., show a snackbar to the user
-      print("Error sending message: $error");
-    }
   }
 }
