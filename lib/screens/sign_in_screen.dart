@@ -41,15 +41,9 @@ class _SignInScreenState extends State<SignInScreen> {
           key: formKey,
           child: ListView(
             children: <Widget>[
-              const SizedBox(
-                height: 26,
-              ),
-              const TalkyAppBar(
-                appBarTitle: AppBarTitle(customText: ''),
-              ),
-              const SizedBox(
-                height: 26,
-              ),
+              const SizedBox(height: 26),
+              const TalkyAppBar(appBarTitle: AppBarTitle(customText: '')),
+              const SizedBox(height: 26),
               const TalkyLogo(
                 textColor: Color(0xFF243443),
                 dotColor: Color(0xFF377DFF),
@@ -84,9 +78,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 },
                 obscureText: true,
               ),
-              ForgotPasswordButton(
-                onPressed: () {},
-              ),
+              ForgotPasswordButton(onPressed: () {}),
               const SizedBox(height: 160),
               CustomButton(
                 text: 'Sign in',
@@ -95,15 +87,16 @@ class _SignInScreenState extends State<SignInScreen> {
                     isLoading = true;
                     setState(() {});
                     try {
-                      await signInMethod(email!, password!);
-                      Navigator.pushReplacementNamed(context, '/HomeScreen');
+                      // Sign in the user
+                      UserCredential userCredential = await signInMethod(email!, password!);
+                      
+                      // Navigate to HomeScreen with user details
+                      Navigator.pushReplacementNamed(context, '/ChatScreen', arguments: userCredential.user?.uid);
                     } on FirebaseAuthException catch (e) {
                       String errorMessage = handleSignInFirebaseAuthException(e);
                       showSnackbar(errorMessage, context);
                     } catch (e) {
-                      showSnackbar(
-                          'There was an error signing in. Please try again later.',
-                          context);
+                      showSnackbar('There was an error signing in. Please try again later.', context);
                     } finally {
                       isLoading = false;
                       setState(() {});

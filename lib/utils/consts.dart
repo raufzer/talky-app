@@ -1,0 +1,1 @@
+String kMessages = 'messages';
