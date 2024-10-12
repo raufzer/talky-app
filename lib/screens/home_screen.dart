@@ -30,24 +30,6 @@ class HomeScreen extends StatelessWidget {
             time: '2min ago',
             profilePictureUrl: 'https://ibb.co/XV5yd0p',
           ),
-          ChatMessage(
-            senderName: 'Abd Raouf',
-            message: 'Hey, did you talk to her?',
-            time: '2min ago',
-            profilePictureUrl: 'https://ibb.co/XV5yd0p',
-          ),
-          ChatMessage(
-            senderName: 'Abd Raouf',
-            message: 'Hey, did you talk to her?',
-            time: '2min ago',
-            profilePictureUrl: 'https://ibb.co/XV5yd0p',
-          ),
-          ChatMessage(
-            senderName: 'Abd Raouf',
-            message: 'Hey, did you talk to her?',
-            time: '2min ago',
-            profilePictureUrl: 'https://ibb.co/XV5yd0p',
-          ),
         ],
       ),
       floatingActionButton: Padding(
