@@ -1,5 +1,5 @@
-// utils.dart
-// ignore_for_file: use_build_context_synchronously
+
+
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -87,10 +87,10 @@ class _SignInScreenState extends State<SignInScreen> {
                     isLoading = true;
                     setState(() {});
                     try {
-                      // Sign in the user
+                      
                       UserCredential userCredential = await signInMethod(email!, password!);
                       
-                      // Navigate to HomeScreen with user details
+                      
                       Navigator.pushReplacementNamed(context, '/ChatScreen', arguments: userCredential.user?.uid);
                     } on FirebaseAuthException catch (e) {
                       String errorMessage = handleSignInFirebaseAuthException(e);
