@@ -1,5 +1,3 @@
-// ignore_for_file: depend_on_referenced_packages
-
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
@@ -30,19 +28,26 @@ class _ChatScreenState extends State<ChatScreen> {
         .snapshots()
         .listen((snapshot) {
       try {
-        setState(() {
-          _messages.clear();
-          for (var doc in snapshot.docs) {
-            final data = doc.data();
-            final message = types.TextMessage(
-              id: doc.id,
-              text: data['message'],
-              author: types.User(id: data['userId']),
-              createdAt: data['createdAt'],
-            );
-            _messages.insert(0, message);
-          }
-        });
+        List<types.Message> newMessages = [];
+
+        for (var doc in snapshot.docs) {
+          final data = doc.data();
+          final message = types.TextMessage(
+            id: doc.id,
+            text: data['message'],
+            author: types.User(id: data['userId']),
+            createdAt: data['createdAt'],
+          );
+          newMessages.add(message);
+        }
+
+        if (newMessages.length != _messages.length ||
+            newMessages != _messages) {
+          setState(() {
+            _messages.clear();
+            _messages.addAll(newMessages);
+          });
+        }
       } catch (error) {
         print("Error fetching messages: $error");
       }
@@ -53,8 +58,9 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Chat(
-        messages: _messages.reversed.toList(),
-        onSendPressed: (message) => handleSendPressed(message, _user, _messages, setState),  
+        messages: _messages.toList(),
+        onSendPressed: (message) =>
+            handleSendPressed(message, _user, _messages, setState),
         user: _user,
       ),
     );
