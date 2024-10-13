@@ -54,6 +54,7 @@ dependencies:
   flutter_plugin_android_lifecycle: ^2.0.23
   flutter_chat_ui: ^1.6.15
   cloud_firestore: ^5.4.4
+  uuid: ^4.5.1
 
 
 dev_dependencies:
