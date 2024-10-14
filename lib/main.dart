@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
+import 'package:talky_app/cubits/sign_in_cubit/sign_in_cubit.dart';
+import 'package:talky_app/cubits/sign_up_cubit/sign_up_cubit.dart';
 import 'package:talky_app/cubits/splash_screen_cubit/splash_screen_cubit.dart';
 import 'package:talky_app/firebase_options.dart';
 import 'package:talky_app/screens/splash_screen.dart';
@@ -27,8 +29,18 @@ class TalkyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
-        return BlocProvider(
-          create: (context) => SplashScreenCubit(),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => SignInCubit(),
+            ),
+            BlocProvider(
+              create: (context) => SignUpCubit(),
+            ),
+            BlocProvider(
+              create: (context) => SplashScreenCubit(),
+            ),
+          ],
           child: MaterialApp(
             routes: screensMap,
             debugShowCheckedModeBanner: false,
