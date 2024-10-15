@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
+import 'package:talky_app/bloc_observer.dart';
+import 'package:talky_app/blocs/auth_bloc/auth_bloc.dart';
 import 'package:talky_app/cubits/auth_cubit/auth_cubit.dart';
 import 'package:talky_app/cubits/splash_screen_cubit/splash_screen_cubit.dart';
 import 'package:talky_app/firebase_options.dart';
@@ -15,6 +17,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  Bloc.observer = SimpleBlocObserver();
   runApp(const TalkyApp());
 }
 
@@ -30,8 +33,11 @@ class TalkyApp extends StatelessWidget {
       builder: (_, child) {
         return MultiBlocProvider(
           providers: [
+            // BlocProvider(
+            //   create: (context) => AuthCubit(),
+            // ),
             BlocProvider(
-              create: (context) => AuthCubit(),
+              create: (context) => AuthBloc(),
             ),
             BlocProvider(
               create: (context) => SplashScreenCubit(),
