@@ -37,7 +37,7 @@
    git clone [the repo url]
 2. Navigate to the project directory:
    ```bash
-   cd clima_app
+   cd talky_app
 3. Install dependencies:
    ```bash
    flutter pub get
