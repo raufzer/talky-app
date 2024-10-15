@@ -18,6 +18,8 @@ import 'package:talky_app/widgets/input_field_widget.dart';
 import 'package:talky_app/widgets/sign_in_widget.dart';
 import 'package:talky_app/widgets/talky_logo_widget.dart';
 
+import '../blocs/auth_bloc/auth_bloc.dart';
+
 // ignore: must_be_immutable
 class SignUpScreen extends StatelessWidget {
   String? email;
@@ -34,7 +36,7 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthCubit, AuthState>(
+    return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is SignUpLoading) {
           isLoading = true;
@@ -110,10 +112,7 @@ class SignUpScreen extends StatelessWidget {
                         //       email: email!,
                         //       password: password!,
                         //     );
-                        BlocProvider.of<AuthCubit>(context).signUpMethod(
-                          email: email!,
-                          password: password!,
-                        );
+                        BlocProvider.of<AuthBloc>(context).add(SignUpEvent(email: email!, password: password!));
                       }
                     }
                   },

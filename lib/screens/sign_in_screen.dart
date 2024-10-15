@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:talky_app/blocs/auth_bloc/auth_bloc.dart';
 import 'package:talky_app/cubits/auth_cubit/auth_cubit.dart';
 import 'package:talky_app/cubits/auth_cubit/auth_state.dart';
 import 'package:talky_app/services/auth_methods.dart';
@@ -35,7 +36,7 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthCubit, AuthState>(
+    return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is SignInLoading) {
           isLoading = true;
@@ -104,10 +105,8 @@ class SignInScreen extends StatelessWidget {
                       //       email: email!,
                       //       password: password!,
                       //     );
-                      BlocProvider.of<AuthCubit>(context).signInMethod(
-                        email: email!,
-                        password: password!,
-                      );
+                      BlocProvider.of<AuthBloc>(context)
+                          .add(SignInEvent(email: email!, password: password!));
                     }
                   },
                 ),
