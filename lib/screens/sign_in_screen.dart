@@ -3,9 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:talky_app/cubits/sign_in_cubit/sign_in_cubit.dart';
-import 'package:talky_app/cubits/sign_in_cubit/sign_in_states.dart';
-
+import 'package:talky_app/cubits/auth_cubit/auth_cubit.dart';
+import 'package:talky_app/cubits/auth_cubit/auth_state.dart';
 import 'package:talky_app/services/auth_methods.dart';
 import 'package:talky_app/utils/auth_error_handling_messages.dart';
 import 'package:talky_app/utils/show_snack_bar.dart';
@@ -19,6 +18,7 @@ import 'package:talky_app/widgets/input_field_widget.dart';
 import 'package:talky_app/widgets/sign_up_widget.dart';
 import 'package:talky_app/widgets/talky_logo_widget.dart';
 
+// ignore: must_be_immutable
 class SignInScreen extends StatelessWidget {
   String? email;
   String? password;
@@ -35,7 +35,7 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignInCubit, SignInState>(
+    return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SignInLoading) {
           isLoading = true;
@@ -104,7 +104,7 @@ class SignInScreen extends StatelessWidget {
                       //       email: email!,
                       //       password: password!,
                       //     );
-                      BlocProvider.of<SignInCubit>(context).signInMethod(
+                      BlocProvider.of<AuthCubit>(context).signInMethod(
                         email: email!,
                         password: password!,
                       );

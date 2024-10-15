@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:talky_app/cubits/sign_up_cubit/sign_up_cubit.dart';
-import 'package:talky_app/cubits/sign_up_cubit/sign_up_states.dart';
+import 'package:talky_app/cubits/auth_cubit/auth_cubit.dart';
+import 'package:talky_app/cubits/auth_cubit/auth_state.dart';
 import 'package:talky_app/services/auth_methods.dart';
 import 'package:talky_app/utils/auth_error_handling_messages.dart';
 import 'package:talky_app/utils/show_snack_bar.dart';
@@ -18,6 +18,7 @@ import 'package:talky_app/widgets/input_field_widget.dart';
 import 'package:talky_app/widgets/sign_in_widget.dart';
 import 'package:talky_app/widgets/talky_logo_widget.dart';
 
+// ignore: must_be_immutable
 class SignUpScreen extends StatelessWidget {
   String? email;
   String? password;
@@ -33,7 +34,7 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignUpCubit, SignUpState>(
+    return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SignUpLoading) {
           isLoading = true;
@@ -43,7 +44,7 @@ class SignUpScreen extends StatelessWidget {
             context,
             '/ProfileScreen',
           );
-        } else if (state is SignUpFailed) {
+        } else if (state is SignInFailure) {
           isLoading = false;
         }
       },
@@ -109,7 +110,7 @@ class SignUpScreen extends StatelessWidget {
                         //       email: email!,
                         //       password: password!,
                         //     );
-                        BlocProvider.of<SignUpCubit>(context).signUpMethod(
+                        BlocProvider.of<AuthCubit>(context).signUpMethod(
                           email: email!,
                           password: password!,
                         );
