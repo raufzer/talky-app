@@ -1,5 +1,6 @@
-# Miscellaneous
+# Environment configuration
 .env
+# Miscellaneous
 *.class
 *.log
 *.pyc
